@@ -7,15 +7,10 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.defaults.withCredentials = true;
-    axios.get("http://localhost:5000/api/v1/auth/signup").then((res) => {
-      if (res.data.status) {
-        setUser(res.data.user);
-      } else {
-        navigate("/signin");
-      }
-    });
-  }, [navigate]);
+    if (!user) {
+      navigate("/signin");
+    }
+  }, []);
 
   return (
     <main className="flex items-center justify-center h-[5rem] bg-slate-300">
@@ -29,14 +24,14 @@ const Navbar = () => {
           </Link>
         </li>
         {/* {user && ( */}
-          <li>
-            <Link
-              className="text-xl px-4 py-2 rounded-md bg-sky-400 hover:shadow-[0_5px_10px_rgba(0,0,0,0.35)]"
-              to="/create"
-            >
-              Create Blog
-            </Link>
-          </li>
+        <li>
+          <Link
+            className="text-xl px-4 py-2 rounded-md bg-sky-400 hover:shadow-[0_5px_10px_rgba(0,0,0,0.35)]"
+            to="/create"
+          >
+            Create Blog
+          </Link>
+        </li>
         {/* )} */}
         <li>
           <Link

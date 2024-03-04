@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import FileBase64 from "react-file-base64";
@@ -11,9 +11,9 @@ const CreateBlog = () => {
     datePublished: "",
     author: "",
     tags: [],
-    comment:"",
-    image: null,
-    likes: 0
+    comment: "",
+    image: "",
+    likes: 0,
   };
   const [formData, setFormData] = useState(initialValues);
   const [error, setError] = useState("");
@@ -68,22 +68,22 @@ const CreateBlog = () => {
 
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
-  
+
   //   try {
   //     setLoading(true);
   //     const method = id ? "put" : "post";
   //     const url = id
   //       ? `http://localhost:5000/api/v1/blog/${id}`
   //       : "http://localhost:5000/api/v1/blog";
-  
+
   //     const response = await axios[method](url, formData);
-  //     console.log(response.data); 
+  //     console.log(response.data);
   //     setLoading(false);
   //     setFormData(initialValues);
-  //     navigate("/"); 
+  //     navigate("/");
   //   } catch (error) {
   //     setLoading(false);
-  //     console.error("Error:", error); 
+  //     console.error("Error:", error);
   //     if (error.response) {
   //       setError(error.response.data.message);
   //     } else if (error.request) {
@@ -94,7 +94,7 @@ const CreateBlog = () => {
   //   }
   // };
 
-////
+  ////
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -105,7 +105,9 @@ const CreateBlog = () => {
         ? `http://localhost:5000/api/v1/blog/${id}`
         : "http://localhost:5000/api/v1/blog";
 
-      const response = await axios[method](url, formData);
+      const response = await axios[method](url, formData, {
+        withCredentials: true,
+      });
       console.log(response.data); // Log the response from the backend if needed
       setLoading(false);
       setFormData(initialValues);
@@ -122,24 +124,27 @@ const CreateBlog = () => {
       }
     }
   };
-  
-  useEffect(()=>{
-    axios.defaults.withCredentials = true;
-    axios.get("http://localhost:5000/api/v1/auth/verify")
-    .then(res=>{
-      if(res.data.status){
 
-      }else{
-        navigate("/")
+  useEffect(() => {
+    axios.defaults.withCredentials = true;
+    axios.get("http://localhost:5000/api/v1/auth/verify").then((res) => {
+      if (res.data.status) {
+      } else {
+        navigate("/");
       }
       console.log(res.data.user);
-    })
-  },[])
+    });
+  }, []);
 
   return (
     <main className="flex items-center justify-center h-fit">
-      <form className="flex justify-center items-center flex-col gap-6" onSubmit={handleSubmit}>
-      <h1 className="flex items-center justify-center font-mono font-light text-2xl uppercase">Every field should be filled</h1>
+      <form
+        className="flex justify-center items-center flex-col gap-6"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="flex items-center justify-center font-mono font-light text-2xl uppercase">
+          Every field should be filled
+        </h1>
         <p>
           <input
             type="text"
@@ -189,23 +194,23 @@ const CreateBlog = () => {
           />
         </p>
         <p>
-        {formData.image && (
-                <img
-                  src={formData.image}
-                  alt="Preview"
-                  className="mt-2 rounded-md mb-2 border border-gray-300"
-                />
-              )}
-              <FileBase64
-                type="file"
-                name="image"
-                id="image"
-                accept="image/*"
-                ref={fileInputRef}
-                onDone={({ base64 }) => {
-                  setFormData({ ...formData, image: base64 });
-                }}
-              />
+          {formData.image && (
+            <img
+              src={formData.image}
+              alt="Preview"
+              className="mt-2 rounded-md mb-2 border border-gray-300"
+            />
+          )}
+          <FileBase64
+            type="file"
+            name="image"
+            id="image"
+            accept="image/*"
+            ref={fileInputRef}
+            onDone={({ base64 }) => {
+              setFormData({ ...formData, image: base64 });
+            }}
+          />
         </p>
         {/* <p>
           <input
