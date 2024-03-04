@@ -26,7 +26,7 @@ const CreateBlog = () => {
         try {
           setLoading(true);
           const response = await axios.get(
-            `http://localhost:5000/api/v1/blog/${id}`
+            `https://mushy-dress-bull.cyclic.app/api/v1/blog/${id}`
           );
           setFormData(response.data.data);
           setLoading(false);
@@ -73,8 +73,8 @@ const CreateBlog = () => {
   //     setLoading(true);
   //     const method = id ? "put" : "post";
   //     const url = id
-  //       ? `http://localhost:5000/api/v1/blog/${id}`
-  //       : "http://localhost:5000/api/v1/blog";
+  //       ? `https://mushy-dress-bull.cyclic.app/api/v1/blog/${id}`
+  //       : "https://mushy-dress-bull.cyclic.app/api/v1/blog";
 
   //     const response = await axios[method](url, formData);
   //     console.log(response.data);
@@ -102,8 +102,8 @@ const CreateBlog = () => {
       setLoading(true);
       const method = id ? "put" : "post";
       const url = id
-        ? `http://localhost:5000/api/v1/blog/${id}`
-        : "http://localhost:5000/api/v1/blog";
+        ? `https://mushy-dress-bull.cyclic.app/api/v1/blog/${id}`
+        : "https://mushy-dress-bull.cyclic.app/api/v1/blog";
 
       const response = await axios[method](url, formData, {
         withCredentials: true,
@@ -127,7 +127,7 @@ const CreateBlog = () => {
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios.get("http://localhost:5000/api/v1/auth/verify").then((res) => {
+    axios.get("https://mushy-dress-bull.cyclic.app/api/v1/auth/verify").then((res) => {
       if (res.data.status) {
       } else {
         navigate("/");
@@ -275,7 +275,7 @@ export default CreateBlog;
 //         try {
 //           setLoading(true);
 //           const response = await axios.get(
-//             `http://localhost:5000/api/v1/blog/${id}`
+//             `https://mushy-dress-bull.cyclic.app/api/v1/blog/${id}`
 //           );
 //           setFormData(response.data.data);
 //           setLoading(false);
@@ -320,8 +320,8 @@ export default CreateBlog;
 //       setLoading(true);
 //       const method = id ? "put" : "post";
 //       const url = id
-//         ? `http://localhost:5000/api/v1/blog/${id}`
-//         : "http://localhost:5000/api/v1/blog";
+//         ? `https://mushy-dress-bull.cyclic.app/api/v1/blog/${id}`
+//         : "https://mushy-dress-bull.cyclic.app/api/v1/blog";
 
 //       const response = await axios[method](url, formData);
 //       console.log(response.data); // Log the response from the backend if needed

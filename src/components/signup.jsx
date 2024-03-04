@@ -12,7 +12,7 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post(
-      "http://localhost:5000/api/v1/auth/signup",
+      "https://mushy-dress-bull.cyclic.app/api/v1/auth/signup",
       {
         username,
         email,

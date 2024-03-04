@@ -11,7 +11,7 @@ const ResetPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     Axios.post(
-      "http://localhost:5000/api/v1/auth/reset-password/"+token,
+      "https://mushy-dress-bull.cyclic.app/api/v1/auth/reset-password/"+token,
       {
         password,
       },

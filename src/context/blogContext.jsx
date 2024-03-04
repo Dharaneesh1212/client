@@ -7,7 +7,7 @@ const Blog = createContext();
 const addBlog = async (newBlog, dispatch) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/v1/blog",
+      "https://mushy-dress-bull.cyclic.app/api/v1/blog",
       newBlog
     ); 
     dispatch({ type: "ADD_BLOG", payload: response.data });
@@ -20,7 +20,7 @@ const Blogcontext = ({ children }) => {
   const [state, dispatch] = useReducer(blogReducer, []);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/v1/blog").then((res) => {
+    axios.get("https://mushy-dress-bull.cyclic.app/api/v1/blog").then((res) => {
       dispatch({ type: "FETCH_INIT", payload: res.data });
     });
   }, []);

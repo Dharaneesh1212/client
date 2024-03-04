@@ -12,7 +12,7 @@ const FullBlog = () => {
     const fetchBlog = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/v1/blog/${blogId}`
+          `https://mushy-dress-bull.cyclic.app/api/v1/blog/${blogId}`
         );
         setBlog(response.data.data);
       } catch (error) {
@@ -25,7 +25,7 @@ const FullBlog = () => {
 
   const Delete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/v1/blog/${id}`);
+      await axios.delete(`https://mushy-dress-bull.cyclic.app/api/v1/blog/${id}`);
       setBlog(null);
     } catch (error) {
       console.error("Error deleting blog:", error);

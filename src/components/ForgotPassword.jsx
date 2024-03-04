@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     Axios.post(
-      "http://localhost:5000/api/v1/auth/forgot-password",
+      "https://mushy-dress-bull.cyclic.app/api/v1/auth/forgot-password",
       {
         email,
       },

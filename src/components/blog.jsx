@@ -10,7 +10,7 @@ const Blogs = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/v1/blog");
+        const response = await axios.get("https://mushy-dress-bull.cyclic.app/api/v1/blog");
         setBlogs(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -24,7 +24,7 @@ const Blogs = () => {
     const checkAuthStatus = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/auth/verify",
+          "https://mushy-dress-bull.cyclic.app/api/v1/auth/verify",
           {
             withCredentials: true,
           }
@@ -43,7 +43,7 @@ const Blogs = () => {
 
   const deleteBlog = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/v1/blog/${id}`);
+      await axios.delete(`https://mushy-dress-bull.cyclic.app/api/v1/blog/${id}`);
       setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== id));
     } catch (error) {
       console.error("Error deleting blog:", error);
@@ -57,7 +57,7 @@ const Blogs = () => {
   // axios.defaults.withCredentials = true;
   const handleLogout = async () => {
     await axios
-      .get("http://localhost:5000/api/v1/auth/logout", {
+      .get("https://mushy-dress-bull.cyclic.app/api/v1/auth/logout", {
         withCredentials: true,
       })
       .then((res) => {
