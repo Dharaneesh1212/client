@@ -129,7 +129,6 @@ const CreateBlog = () => {
     axios.defaults.withCredentials = true;
     axios.get("https://mushy-dress-bull.cyclic.app/api/v1/auth/verify").then((res) => {
       if (res.data.status) {
-      } else {
         navigate("/");
       }
       console.log(res.data.user);
